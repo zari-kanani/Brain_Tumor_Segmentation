@@ -43,6 +43,7 @@ The BraTS 2020 dataset is **not included in this repository**. Download it separ
 1. Go to the [BraTS 2020 dataset on Kaggle](https://www.kaggle.com/datasets/awsaf49/brats2020-training-data)
 2. Download and rename the zip to `brain.zip`
 3. Upload `brain.zip` to your Google Drive root (`My Drive/brain.zip`)
+   
 
 ### Slice Selection
 
