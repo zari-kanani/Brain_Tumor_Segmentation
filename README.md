@@ -8,7 +8,6 @@ Given a 2D axial slice of a FLAIR MRI brain scan, the model predicts a pixel-wis
 
 This project implements U-Net from scratch in PyTorch and applies it to brain tumor segmentation. U-Net's symmetric encoder–decoder design with skip connections makes it well-suited for biomedical image segmentation, where spatial precision matters and labeled data is scarce.
 
-
 ## Architecture
 
 The network consists of four encoder blocks, a bottleneck, four symmetric decoder blocks, and a final 1×1 convolution.
@@ -37,6 +36,13 @@ Key design choices:
 ## Dataset
 
 **BraTS 2020** — 369 patients, each with a 3D FLAIR MRI volume (155 axial slices) and a corresponding expert-annotated segmentation mask.
+
+## Getting the Data
+
+The BraTS 2020 dataset is **not included in this repository**. Download it separately and place it on Google Drive before running the notebook.
+1. Go to the [BraTS 2020 dataset on Kaggle](https://www.kaggle.com/datasets/awsaf49/brats2020-training-data)
+2. Download and rename the zip to `brain.zip`
+3. Upload `brain.zip` to your Google Drive root (`My Drive/brain.zip`)
 
 ### Slice Selection
 
