@@ -1,0 +1,14 @@
+# Core deep learning
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Medical imaging
+nibabel==5.4.2
+
+# Scientific computing
+numpy==2.0.2
+
+# Visualisation
+matplotlib==3.10.0
+
+# Python 3.12 required
