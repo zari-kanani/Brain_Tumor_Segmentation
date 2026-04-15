@@ -73,3 +73,5 @@ Cross-entropy is a poor choice when tumor pixels can be as few as 1–2% of all 
 | Best Val Dice Loss | 0.1201 (epoch 24) |
 | Training stopped | Epoch 34 / 50 |
 
+The qualitative output shows three panels per test sample: the raw FLAIR scan, the ground-truth expert mask, and the U-Net prediction. A Dice score of ~0.90 confirms strong generalisation despite training on a small slice subset.
+
