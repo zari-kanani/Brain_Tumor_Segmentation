@@ -1,25 +1,8 @@
 # Brain Tumor Segmentation with U-Net
 
-A PyTorch implementation of the U-Net architecture for pixel-wise binary segmentation of brain tumors from MRI scans, trained on the [BraTS 2020 dataset](https://www.med.upenn.edu/cbica/brats2020/).
+A PyTorch implementation of the U-Net architecture for pixel-wise binary segmentation of brain tumors from MRI scans, trained on the [BraTS 2020 dataset].
 
 Given a 2D axial slice of a FLAIR MRI brain scan, the model predicts a pixel-wise binary mask highlighting the tumor region.
-
-**Test Dice Score: 0.9025**
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Dataset](#dataset)
-- [Training](#training)
-- [Results](#results)
-- [Requirements](#requirements)
-- [Usage](#usage)
-- [Possible Improvements](#possible-improvements)
-
----
 
 ## Overview
 
@@ -61,21 +44,6 @@ Key design choices:
 
 Rather than using all 155 slices per patient (most of which are tumor-free), only the **top-3 most tumor-rich slices** per patient are kept. This yields 1,107 slice pairs and avoids severe class imbalance.
 
-### Preprocessing
-
-1. **Min-max normalisation** — intensities scaled to `[0, 1]`
-2. **Binary mask** — multi-class BraTS labels (1/2/4) collapsed to whole-tumor `{0, 1}`
-3. **Resize** — all slices resized to `256 × 256`
-
-### Train / Val / Test Split
-
-| Split | Fraction | Samples |
-|---|---|---|
-| Train | 80% | 885 |
-| Val | 10% | 111 |
-| Test | 10% | 111 |
-
----
 
 ## Training
 
@@ -105,47 +73,3 @@ Cross-entropy is a poor choice when tumor pixels can be as few as 1–2% of all 
 | Best Val Dice Loss | 0.1201 (epoch 24) |
 | Training stopped | Epoch 34 / 50 |
 
-The qualitative output shows three panels per test sample: the raw FLAIR scan, the ground-truth expert mask, and the U-Net prediction. A Dice score of ~0.90 confirms strong generalisation despite training on a small slice subset.
-
----
-
-## Requirements
-
-```
-torch
-torchvision
-nibabel
-numpy
-matplotlib
-```
-
-The notebook is designed to run on **Google Colab** (T4 GPU). The BraTS 2020 data is loaded from Google Drive.
-
----
-
-## Usage
-
-1. Upload `brain.zip` (BraTS 2020 training data) to your Google Drive.
-2. Open the notebook in Google Colab and connect a GPU runtime.
-3. Run all cells in order. The notebook will:
-   - Mount Google Drive and extract the dataset
-   - Build the U-Net model
-   - Train with early stopping and save `best_model.pth`
-   - Evaluate on the test set and print the Dice score
-   - Display a qualitative prediction on a random test sample
-
----
-
-## Possible Improvements
-
-- Use all four BraTS modalities (T1, T1ce, T2, FLAIR) as input channels
-- Add data augmentation (random flips, rotations, elastic deformations)
-- Train on full 3D volumes with a 3D U-Net
-- Replace Dice loss with a combined Dice + Binary Cross-Entropy loss
-- Experiment with pretrained encoders (ResNet, EfficientNet backbone)
-
----
-
-## Reference
-
-Ronneberger, O., Fischer, P., & Brox, T. (2015). [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597). MICCAI 2015.
